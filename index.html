@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slatro Portfolio | Premium Developer Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#10b981', // Sleek Emerald Theme for Slatro
+              600: '#059669',
+              700: '#047857',
+              900: '#064e3b',
+            },
+            dark: {
+              950: '#030712',
+              900: '#080d1a',
+              850: '#0f172a',
+              800: '#1e293b',
+              700: '#334155',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      background-color: #030712;
+      color: #f3f4f6;
+    }
+    
+    /* Dynamic Fluid Background Blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(130px);
+      opacity: 0.15;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: float 25s infinite alternate ease-in-out;
+      z-index: 0;
+    }
+    .blob-1 {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, #06b6d4 0%, #0891b2 100%);
+      top: 5%;
+      left: 10%;
+      animation-duration: 22s;
+    }
+    .blob-2 {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, #10b981 0%, #059669 100%);
+      bottom: 10%;
+      right: 5%;
+      animation-duration: 28s;
+    }
+    .blob-3 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #6366f1 0%, #4f46e5 100%);
+      top: 45%;
+      left: 35%;
+      animation-duration: 18s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0px, 0px) scale(1) rotate(0deg);
+      }
+      50% {
+        transform: translate(30px, 50px) scale(1.08) rotate(180deg);
+      }
+      100% {
+        transform: translate(-20px, -30px) scale(0.92) rotate(360deg);
+      }
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #080d1a;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+
+    /* Elegant Glassmorphism Card Style */
+    .glass-card-premium {
+      background: rgba(8, 13, 26, 0.45);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card-premium:hover {
+      border-color: rgba(16, 185, 129, 0.2);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 20px 0 rgba(16, 185, 129, 0.05);
+    }
+
+    /* Rotating Avatar border */
+    .avatar-glow-border {
+      position: relative;
+      border-radius: 50%;
+      padding: 3.5px;
+      background: linear-gradient(90deg, #10b981, #06b6d4, #6366f1, #10b981);
+      background-size: 300% 300%;
+      animation: spin-gradient 6s linear infinite;
+    }
+    @keyframes spin-gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Visual tilt micro-interaction */
+    .project-card {
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px) scale(1.015);
+    }
+
+    #toast {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased bg-dark-950 text-gray-100 min-h-screen relative overflow-x-hidden custom-scrollbar">
+
+  <!-- Background Animating Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Master Flex Layout: Sticky Left Sidebar on Large Screens, Stacked on Mobile -->
+  <div class="min-h-screen flex flex-col lg:flex-row relative z-10">
+    
+    <!-- Sticky Left Profile Sidebar -->
+    <aside class="w-full lg:w-[26rem] lg:h-screen lg:sticky lg:top-0 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-800/80 bg-[#060b15]/60 backdrop-blur-xl z-20 flex-shrink-0">
+      
+      <!-- Top Section (Profile Details) -->
+      <div class="p-6 sm:p-8 lg:p-10 flex flex-col items-center lg:items-start text-center lg:text-left h-full justify-between">
+        
+        <!-- Brand Lockup -->
+        <div class="w-full flex items-center justify-between mb-8 pb-4 border-b border-gray-800/40">
+          <div class="flex items-center space-x-3.5">
+            <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-brand-500 to-cyan-500 p-[1.5px] flex items-center justify-center shadow-lg shadow-brand-500/20 overflow-hidden">
+              <img src="profile.jpg" alt="Slatro Logo" class="h-full w-full object-cover rounded-[10px]">
+            </div>
+            <div>
+              <h1 class="font-display font-bold text-base tracking-tight text-white">Slatro</h1>
+              <p class="text-[9px] text-brand-500 font-mono tracking-widest uppercase font-semibold">Portfolio Hub</p>
+            </div>
+          </div>
+          <div class="text-[10px] text-gray-500 font-mono bg-dark-950 px-2 py-0.5 rounded border border-gray-800/60">v2.1-Web3</div>
+        </div>
+
+        <!-- Middle Profile Info -->
+        <div class="flex flex-col items-center lg:items-start my-auto py-4">
+          <!-- Avatar Frame with Glowing Rotating Border -->
+          <div class="relative group mb-6">
+            <div class="avatar-glow-border shadow-2xl">
+              <img id="profile-img" src="profile.jpg" 
+                   alt="Slatro Avatar" 
+                   class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full object-cover border-3 border-dark-950">
+            </div>
+            <div class="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-emerald-500 border-2 border-dark-950 flex items-center justify-center" title="Online Status">
+              <span class="block h-2.5 w-2.5 rounded-full bg-white animate-pulse"></span>
+            </div>
+          </div>
+
+          <h2 id="profile-name" class="font-display text-2xl lg:text-3xl font-extrabold tracking-tight text-white mb-2.5">
+            Slatro
+          </h2>
+          
+          <div class="flex flex-wrap gap-1.5 justify-center lg:justify-start mb-4">
+            <span id="profile-role" class="text-[10px] font-bold text-brand-400 tracking-wider uppercase font-mono bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/10">
+              Web3 & Game Developer
+            </span>
+          </div>
+
+          <p id="profile-bio" class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6 max-w-sm">
+            Crafting decentralized stablecoin AMMs, high-performance Web3 arcade systems, and rich storytelling game spaces on Arc, Base, and Seismic networks.
+          </p>
+
+          <!-- Social links -->
+          <div class="flex items-center gap-3.5" id="social-links-container"></div>
+        </div>
+
+        <!-- Sidebar Bottom Footer Area -->
+        <div class="w-full pt-6 mt-8 border-t border-gray-800/40 flex items-center justify-start">
+          <p class="text-[10px] text-gray-500 font-mono">&copy; 2026 Slatro Portfolio</p>
+        </div>
+        
+      </div>
+    </aside>
+
+    <!-- Scrollable Right Content Panel -->
+    <main class="flex-1 min-h-screen flex flex-col relative z-10 overflow-x-hidden">
+      
+      <!-- Sticky Navigation Bar (Right Panel Header) -->
+      <header class="sticky top-0 z-30 bg-dark-950/60 backdrop-blur-md border-b border-gray-900/60 transition-all">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+          <div class="flex items-center space-x-2 lg:hidden">
+            <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-brand-500 to-cyan-500 p-[1px] flex items-center justify-center shadow overflow-hidden">
+              <img src="profile.jpg" alt="Slatro Logo" class="h-full w-full object-cover rounded-[7px]">
+            </div>
+            <h2 class="font-display font-bold text-sm tracking-tight text-white">Slatro</h2>
+          </div>
+          <div class="hidden lg:flex items-center space-x-2">
+            <i class="fa-solid fa-cube text-brand-500 text-sm"></i>
+            <span class="text-xs font-bold text-gray-400 tracking-wider uppercase font-mono">Production Showroom</span>
+          </div>
+          
+          <div class="flex items-center">
+            <!-- Sleek, Wide View Projects Navigation Button -->
+            <a href="#projects-section" class="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-2.5 sm:py-3 text-xs sm:text-sm font-bold rounded-xl bg-gradient-to-r from-brand-600 via-emerald-600 to-cyan-600 text-white hover:from-brand-500 hover:via-emerald-500 hover:to-cyan-500 shadow-lg shadow-brand-500/10 hover:shadow-brand-500/20 hover:scale-[1.03] active:scale-95 transition-all duration-300">
+              <span>View Projects</span>
+              <i class="fa-solid fa-chevron-down text-[10px] text-white/80 group-hover:translate-y-0.5 transition-transform duration-200"></i>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Welcome Showcase and Stats Dashboard -->
+      <section class="px-4 sm:px-6 lg:px-8 pt-8 pb-4 max-w-6xl w-full mx-auto">
+        <div class="glass-card-premium rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+          <div class="absolute -top-16 -right-16 h-36 w-36 bg-gradient-to-br from-brand-500/10 to-transparent rounded-full blur-xl pointer-events-none"></div>
+          <div class="text-center md:text-left space-y-2">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 text-[10px] font-bold uppercase tracking-wider font-mono border border-cyan-500/10">
+              <i class="fa-solid fa-sparkles text-[8px]"></i> Custom Development Ecosystem
+            </div>
+            <h3 class="font-display font-extrabold text-xl sm:text-2xl lg:text-3xl text-white tracking-tight leading-tight">
+              Web3 & Game Portfolio
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-400 max-w-xl">
+              Exploring high-fidelity game architectures, stablecoin forex exchanges, and custom tools built completely from scratch with sleek modern interfaces.
+            </p>
+          </div>
+          
+          <!-- Mini Stats Grid -->
+          <div class="grid grid-cols-3 gap-2.5 sm:gap-4 w-full md:w-auto flex-shrink-0">
+            <div class="bg-dark-950/60 border border-gray-800/80 rounded-xl px-3 sm:px-5 py-2.5 sm:py-3.5 text-center shadow-inner min-w-[70px] sm:min-w-[90px]">
+              <span class="block font-display font-bold text-sm sm:text-lg text-emerald-400">4</span>
+              <span class="block text-[8px] sm:text-[9px] text-gray-500 uppercase tracking-widest font-semibold mt-0.5">Projects</span>
+            </div>
+            <div class="bg-dark-950/60 border border-gray-800/80 rounded-xl px-3 sm:px-5 py-2.5 sm:py-3.5 text-center shadow-inner min-w-[70px] sm:min-w-[90px]">
+              <span class="block font-display font-bold text-sm sm:text-lg text-cyan-400">3</span>
+              <span class="block text-[8px] sm:text-[9px] text-gray-500 uppercase tracking-widest font-semibold mt-0.5">Chains</span>
+            </div>
+            <div class="bg-dark-950/60 border border-gray-800/80 rounded-xl px-3 sm:px-5 py-2.5 sm:py-3.5 text-center shadow-inner min-w-[70px] sm:min-w-[90px]">
+              <span class="block font-display font-bold text-sm sm:text-lg text-indigo-400">100%</span>
+              <span class="block text-[8px] sm:text-[9px] text-gray-500 uppercase tracking-widest font-semibold mt-0.5">Original</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects-section" class="flex-1 px-4 sm:px-6 lg:px-8 py-8 max-w-6xl w-full mx-auto">
+        
+        <!-- Controls Bar: Title, Search, and Category Filters -->
+        <div class="mb-8 space-y-5">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="font-display font-extrabold text-lg sm:text-xl text-white tracking-tight flex items-center gap-2">
+                <span>Built Applications</span>
+                <span class="px-2 py-0.5 rounded bg-brand-500/10 text-brand-400 text-xs font-mono font-bold" id="project-count">0</span>
+              </h3>
+              <p class="text-xs text-gray-400 mt-0.5">Select a category or search keyword to filter production deploys.</p>
+            </div>
+
+            <div class="flex gap-2.5 items-stretch sm:items-center">
+              <!-- Search box -->
+              <div class="relative w-full sm:w-60">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+                  <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                </div>
+                <input type="text" id="search-input" placeholder="Search applications..." 
+                       class="block w-full pl-9 pr-4 py-2.5 bg-[#080d1a]/80 border border-gray-800/80 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 text-gray-200 placeholder-gray-505 transition-all">
+              </div>
+            </div>
+          </div>
+
+          <!-- Category Badges Filter Strip -->
+          <div class="flex items-center overflow-x-auto gap-2 pb-2 custom-scrollbar" id="categories-container"></div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden py-16 text-center glass-card-premium rounded-2xl max-w-md mx-auto">
+          <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-dark-950 border border-gray-800 text-gray-500 text-xl mb-3.5">
+            <i class="fa-solid fa-folder-open"></i>
+          </div>
+          <h4 class="font-display font-bold text-lg text-white mb-1.5">No Matching Applications</h4>
+          <p class="text-xs text-gray-400 max-w-xs mx-auto">No records match your filters or query. Try selecting another filter tag.</p>
+        </div>
+
+        <!-- Applications Responsive Grid -->
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12"></div>
+      </section>
+
+      <!-- Bottom Branding Footer -->
+      <footer class="border-t border-gray-900/60 bg-[#060b15]/60 backdrop-blur-xl py-10 px-4 sm:px-6 lg:px-8 mt-auto">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="text-center sm:text-left">
+            <p class="font-display font-bold text-white tracking-widest text-xs uppercase" id="footer-branding">Slatro Hub</p>
+            <p class="text-[10px] text-gray-500 mt-1">Interactive Custom Single-Page Developer Web Showcase</p>
+          </div>
+          <p class="text-[10px] text-gray-500 text-center sm:text-right font-mono">
+            Designed for Slatro. Powered by Tailwind CSS & Glassmorphism.
+          </p>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Passcode Entry Modal -->
+  <div id="passcode-modal" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="absolute inset-0 bg-[#030712]/90 backdrop-blur-md transition-opacity" id="passcode-overlay"></div>
+    
+    <div class="fixed inset-0 flex items-center justify-center p-4">
+      <div class="w-full max-w-md bg-dark-900 border border-gray-850 rounded-3xl p-6.5 shadow-2xl relative flex flex-col text-center">
+        <div class="mx-auto h-14 w-14 rounded-2xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-4">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white mb-1.5">Security Gate Verification</h3>
+        <p class="text-xs text-gray-400 mb-6 leading-relaxed">
+          Please input your administrator passcode key below to access site layout customizations and CRUD operations.
+        </p>
+
+        <div class="relative mb-5">
+          <input type="password" id="passcode-input" placeholder="Enter admin password..."
+                 class="w-full bg-dark-950 border border-gray-800 rounded-xl px-4 py-3 text-center text-sm text-white tracking-widest focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 font-mono">
+        </div>
+
+        <div class="flex gap-3 justify-center">
+          <button id="btn-passcode-close" class="flex-1 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold rounded-xl transition-all">
+            Cancel
+          </button>
+          <button id="btn-passcode-submit" class="flex-1 py-2.5 bg-gradient-to-r from-brand-600 to-cyan-600 hover:from-brand-500 hover:to-cyan-500 text-white text-xs font-semibold rounded-xl transition-all shadow-md shadow-brand-500/10">
+            Access Controls
+          </button>
+        </div>
+        <p class="text-[10px] text-gray-500 font-mono mt-4">Tip: The default password configured is <strong class="text-brand-500">slatro2026</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Admin Control Panel Slider Sidebar -->
+  <div id="admin-panel" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="absolute inset-0 bg-[#030712]/80 backdrop-blur-sm transition-opacity animate-fade-in" id="admin-overlay"></div>
+
+    <div class="absolute inset-y-0 right-0 max-w-full pl-10 flex">
+      <div class="w-screen max-w-2xl bg-dark-900 border-l border-gray-850 shadow-2xl flex flex-col relative">
+        
+        <!-- Sidebar Header -->
+        <div class="px-6 py-5.5 border-b border-gray-800/80 flex items-center justify-between bg-dark-950/40">
+          <div class="flex items-center space-x-3">
+            <div class="h-9 w-9 rounded-xl bg-brand-500/15 text-brand-400 flex items-center justify-center text-sm border border-brand-500/15">
+              <i class="fa-solid fa-sliders"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-display font-bold text-white">Slatro Site Settings</h2>
+              <p class="text-[11px] text-gray-400">Instantly update bio information, social networks, and projects.</p>
+            </div>
+          </div>
+          <button id="btn-admin-close" class="text-gray-400 hover:text-white transition-colors h-8.5 w-8.5 flex items-center justify-center rounded-xl hover:bg-gray-800">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+
+        <!-- Scrollable content tabs -->
+        <div class="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8">
+          
+          <!-- Admin Tabs -->
+          <div class="flex border-b border-gray-800/80">
+            <button id="tab-profile-trigger" class="flex-1 py-3 text-xs font-bold border-b-2 border-brand-500 text-brand-400 text-center uppercase tracking-widest focus:outline-none transition-all">
+              <i class="fa-solid fa-user-circle mr-1.5 text-xs"></i> Profile
+            </button>
+            <button id="tab-projects-trigger" class="flex-1 py-3 text-xs font-bold border-b-2 border-transparent text-gray-400 hover:text-white text-center uppercase tracking-widest focus:outline-none transition-all">
+              <i class="fa-solid fa-folder-open mr-1.5 text-xs"></i> Projects
+            </button>
+            <button id="tab-export-trigger" class="flex-1 py-3 text-xs font-bold border-b-2 border-transparent text-gray-400 hover:text-white text-center uppercase tracking-widest focus:outline-none transition-all">
+              <i class="fa-solid fa-file-code mr-1.5 text-xs"></i> Export / Backup
+            </button>
+          </div>
+
+          <!-- TAB 1: PROFILE MANAGEMENT -->
+          <div id="panel-profile-section" class="space-y-6">
+            <div class="bg-brand-500/5 border border-brand-500/10 p-4 rounded-xl text-xs text-gray-300 leading-relaxed">
+              <span class="text-brand-500 font-bold">💡 How edits persist:</span> Updates here reflect dynamically on your open browser page instantly. Make sure to download a config backup or copy the code from the <strong class="text-white">"Export"</strong> tab to save these edits permanently in your `index.html` file code.
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Profile Display Name</label>
+                <input type="text" id="input-profile-name" class="w-full bg-dark-950 border border-gray-800 rounded-xl px-3.5 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-brand-500 font-medium">
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Profile Role / Subtitle</label>
+                <input type="text" id="input-profile-role" class="w-full bg-dark-950 border border-gray-800 rounded-xl px-3.5 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-brand-500 font-medium">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Avatar Image Address (URL)</label>
+              <input type="text" id="input-profile-avatar" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3.5 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-brand-500 font-mono text-xs">
+            </div>
+
+            <div>
+              <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Bio Introduction Statement</label>
+              <textarea id="input-profile-bio" rows="3.5" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3.5 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-brand-500 custom-scrollbar leading-relaxed"></textarea>
+            </div>
+
+            <div class="border-t border-gray-800 pt-6 space-y-4">
+              <h3 class="text-xs font-display font-bold text-white uppercase tracking-widest text-brand-500">Social Networking Integrations</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs text-gray-400 mb-1.5"><i class="fa-brands fa-github text-gray-400 mr-1.5 text-xs"></i>GitHub Link</label>
+                  <input type="text" id="social-github" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 font-mono">
+                </div>
+                <div>
+                  <label class="block text-xs text-gray-400 mb-1.5"><i class="fa-brands fa-x-twitter text-gray-400 mr-1.5 text-xs"></i>Twitter (X) Link</label>
+                  <input type="text" id="social-twitter" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 font-mono">
+                </div>
+                <div>
+                  <label class="block text-xs text-gray-400 mb-1.5"><i class="fa-solid fa-envelope text-gray-400 mr-1.5 text-xs"></i>Contact Email Link</label>
+                  <input type="text" id="social-email" placeholder="mailto:you@domain.com" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 font-mono">
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-end pt-4 border-t border-gray-800">
+              <button id="btn-save-profile" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-brand-500/10 active:scale-95">
+                Save Profile Adjustments
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB 2: PROJECTS MANAGEMENT (CRUD) -->
+          <div id="panel-projects-section" class="space-y-6 hidden">
+            
+            <!-- Project Addition/Edition Form -->
+            <div id="project-form-container" class="bg-dark-950/45 border border-gray-850 p-5 rounded-2xl relative">
+              <h3 id="form-heading" class="text-xs font-display font-bold text-white tracking-widest uppercase mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-circle-plus text-brand-500"></i> Add New Application Entry
+              </h3>
+
+              <div class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-[10px] text-gray-400 mb-1.5 font-bold uppercase tracking-wider">Application Name</label>
+                    <input type="text" id="proj-title" placeholder="e.g. Slatro Engine" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 font-medium">
+                  </div>
+                  <div>
+                    <label class="block text-[10px] text-gray-400 mb-1.5 font-bold uppercase tracking-wider">Live Deploy Address (URL)</label>
+                    <input type="text" id="proj-url" placeholder="https://slatro-engine.vercel.app/" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 font-mono">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-[10px] text-gray-400 mb-1.5 font-bold uppercase tracking-wider">GitHub Repository (URL)</label>
+                    <input type="text" id="proj-repo" placeholder="https://github.com/slatro/engine" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 font-mono">
+                  </div>
+                  <div>
+                    <label class="block text-[10px] text-gray-400 mb-1.5 font-bold uppercase tracking-wider">Category Tag Badge</label>
+                    <select id="proj-category" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 font-medium">
+                      <option value="DeFi / Blockchain">DeFi / Blockchain</option>
+                      <option value="Games">Games</option>
+                      <option value="Utilities">Utilities</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-[10px] text-gray-400 mb-1.5 font-bold uppercase tracking-wider">Card Accent Theme Gradient</label>
+                    <select id="proj-gradient" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 font-medium">
+                      <option value="from-brand-505 to-cyan-500">Deep Emerald (Default)</option>
+                      <option value="from-cyan-500 to-blue-600">Ocean Turquoise</option>
+                      <option value="from-violet-600 to-indigo-600">Purple Velvet</option>
+                      <option value="from-rose-500 to-orange-500">Sunset Flare</option>
+                      <option value="from-fuchsia-600 to-pink-500">Orchid Magic</option>
+                      <option value="from-amber-400 to-rose-600">Crimson Gold</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-[10px] text-gray-400 mb-1.5 font-bold uppercase tracking-wider">Tech Stack Tags (Comma separated)</label>
+                    <input type="text" id="proj-tags" placeholder="React, Node, Solidity" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-[10px] text-gray-400 mb-1.5 font-bold uppercase tracking-wider">Project Scope Description</label>
+                  <textarea id="proj-desc" rows="3" placeholder="Explain the context and engineering behind this web build..." class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 custom-scrollbar leading-relaxed"></textarea>
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                  <button type="button" id="btn-cancel-edit" class="hidden px-4 py-2 bg-gray-850 hover:bg-gray-800 border border-gray-800 text-gray-300 rounded-xl text-xs font-semibold transition-all">
+                    Discard Editing
+                  </button>
+                  <button type="button" id="btn-save-project" class="ml-auto px-5 py-2.5 bg-gradient-to-r from-brand-600 to-cyan-600 hover:from-brand-500 hover:to-cyan-500 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-brand-500/10 active:scale-95">
+                    Add Project Entry
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Existing Projects List -->
+            <div class="space-y-3.5">
+              <h3 class="text-[10px] font-display font-bold text-gray-400 uppercase tracking-widest">Added Application Records</h3>
+              <div id="admin-projects-list" class="space-y-2.5"></div>
+            </div>
+          </div>
+
+          <!-- TAB 3: EXPORT CODE AND BACKUP RESTORE -->
+          <div id="panel-export-section" class="space-y-6 hidden">
+            <div class="bg-dark-950/45 border border-gray-850 p-5 rounded-2xl space-y-3">
+              <h3 class="font-display font-semibold text-white text-sm flex items-center gap-2">
+                <i class="fa-solid fa-code text-brand-500"></i> Baking Edits Permanently
+              </h3>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                To bake configurations permanently into your site code so they persist across any hosting deployment (e.g. Vercel, GitHub Pages, Netlify), copy the exported JavaScript object configuration below, find the declaration of <strong class="text-white">"const INITIAL_DATA"</strong> in this HTML file, and replace it completely.
+              </p>
+            </div>
+
+            <div class="space-y-2.5">
+              <div class="flex items-center justify-between">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Exportable Data Configuration Block</label>
+                <button id="btn-copy-export" class="text-xs text-brand-500 hover:text-brand-400 hover:underline flex items-center gap-1 font-semibold">
+                  <i class="fa-solid fa-copy"></i> Copy to Clipboard
+                </button>
+              </div>
+              <textarea id="output-export-area" readonly rows="8" class="w-full bg-dark-950 border border-gray-850 rounded-xl p-3.5 font-mono text-[11px] text-cyan-400 focus:outline-none custom-scrollbar leading-relaxed"></textarea>
+            </div>
+
+            <div class="border-t border-gray-850 pt-6 space-y-4">
+              <h4 class="text-xs font-display font-bold text-white uppercase tracking-widest text-brand-500">Configuration Backup & Restore</h4>
+              <p class="text-[11px] text-gray-400 leading-relaxed">Save the profile and list of applications to your local drive as a raw backup JSON, or restore an existing configuration file instantly.</p>
+              <div class="flex gap-4">
+                <button id="btn-download-backup" class="flex-1 px-4 py-2.5 bg-dark-950 hover:bg-gray-850 border border-gray-800 text-gray-200 text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all">
+                  <i class="fa-solid fa-file-arrow-down text-brand-500"></i> Save Backup JSON
+                </button>
+                <label for="import-backup-file" class="flex-1 px-4 py-2.5 bg-dark-950 hover:bg-gray-850 border border-gray-800 text-gray-200 text-xs font-bold rounded-xl flex items-center justify-center gap-2 cursor-pointer text-center transition-all">
+                  <i class="fa-solid fa-file-arrow-up text-cyan-500"></i> Import Backup JSON
+                </label>
+                <input type="file" id="import-backup-file" class="hidden" accept=".json">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar footer -->
+        <div class="px-6 py-4 border-t border-gray-850 bg-dark-950 flex items-center justify-between">
+          <p class="text-[10px] text-gray-500 font-mono">Slatro Dynamic Interactive System v2.1</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Action Notifications Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-55 transform translate-y-24 opacity-0 flex items-center gap-3 px-4.5 py-3 rounded-2xl bg-dark-900/90 border border-gray-850 text-gray-100 text-sm shadow-2xl backdrop-blur-md">
+    <span id="toast-icon" class="text-brand-400"><i class="fa-solid fa-circle-check"></i></span>
+    <span id="toast-msg">Configuration updated successfully</span>
+  </div>
+
+  <script>
+    // SECURE PASSCODE CONFIGURATION
+    const ADMIN_SECRET_KEY = "slatro2026";
+
+    // INITIAL CUSTOMIZED DATA (Emre Öktem / Slatro & Real Web3/Gaming Projects)
+    const INITIAL_DATA = {
+      "profile": {
+        "name": "Slatro",
+        "role": "Web3 & Game Architect",
+        "bio": "Crafting decentralized stablecoin AMMs, high-performance Web3 arcade systems, and rich storytelling game spaces on Arc, Base, and Seismic networks.",
+        "avatar": "profile.jpg",
+        "socials": {
+          "github": "https://github.com/slatro",
+          "twitter": "https://x.com/slatro_eth",
+          "email": "slatro.eth@gmail.com"
+        }
+      },
+      "projects": [
+        {
+          "id": "proj_arcfx",
+          "title": "ArcFX AMM",
+          "url": "https://arc-fx.vercel.app/#",
+          "repo": "https://github.com/",
+          "desc": "A decentralized stablecoin FX AMM on the Arc Testnet. Enables capital-efficient swaps, stablecoin liquidity pools, and peer-to-peer forex trading with predictable, USDC-denominated gas fees.",
+          "category": "DeFi / Blockchain",
+          "tags": "Solidity, AMM, Stablecoin, Arc Network, Web3.js",
+          "gradient": "from-emerald-500 to-teal-500"
+        },
+        {
+          "id": "proj_basebridge",
+          "title": "Base Bridge Game",
+          "url": "https://base-bridge-eta.vercel.app/",
+          "repo": "https://github.com/",
+          "desc": "An interactive Web3 bridge-building arcade game integrated with the Base chain. Features wallet connectivity, daily check-ins, leaderboards, and on-chain action mechanics.",
+          "category": "Games",
+          "tags": "HTML5 Canvas, Web3, Base Chain, WalletConnect, Gamification",
+          "gradient": "from-blue-600 to-indigo-600"
+        },
+        {
+          "id": "proj_golemseismic",
+          "title": "Golem of the Seismic",
+          "url": "https://golem-of-the-seismic.vercel.app/",
+          "repo": "https://github.com/",
+          "desc": "Atmospheric, lore-driven WebGL narrative game and development walkthrough built for the Seismic network. Featuring interactive puzzle rooms and immersive retro soundscapes.",
+          "category": "Games",
+          "tags": "Unity WebGL, Game Dev, Seismic Chain, Web Audio, Lore Matrix",
+          "gradient": "from-purple-600 to-rose-600"
+        },
+        {
+          "id": "proj_alphaleak",
+          "title": "Alpha Leak Engine",
+          "url": "https://alpha-leak.vercel.app/",
+          "repo": "https://github.com/",
+          "desc": "A private cryptocurrency analytics dashboard and search engine. Offers high-priority alpha discovery alerts, token contract lookups, and private wallet activity tracking.",
+          "category": "Utilities",
+          "tags": "Next.js, Tailwind CSS, Token Intel, Wallet Watchlist, Radar API",
+          "gradient": "from-amber-400 to-rose-600"
+        }
+      ]
+    };
+
+    let appState = { profile: {}, projects: [], activeFilter: 'All' };
+
+    // DOM Nodes Mapping
+    const dom = {
+      profileImg: document.getElementById('profile-img'),
+      profileName: document.getElementById('profile-name'),
+      profileRole: document.getElementById('profile-role'),
+      profileBio: document.getElementById('profile-bio'),
+      socialLinksContainer: document.getElementById('social-links-container'),
+      projectCount: document.getElementById('project-count'),
+      searchInput: document.getElementById('search-input'),
+      categoriesContainer: document.getElementById('categories-container'),
+      emptyState: document.getElementById('empty-state'),
+      projectsGrid: document.getElementById('projects-grid'),
+      logoInitial: document.getElementById('logo-initial'),
+      
+      // Passcode elements
+      passcodeModal: document.getElementById('passcode-modal'),
+      passcodeOverlay: document.getElementById('passcode-overlay'),
+      passcodeInput: document.getElementById('passcode-input'),
+      btnPasscodeClose: document.getElementById('btn-passcode-close'),
+      btnPasscodeSubmit: document.getElementById('btn-passcode-submit'),
+
+      // Admin panels
+      adminPanel: document.getElementById('admin-panel'),
+      adminOverlay: document.getElementById('admin-overlay'),
+      btnAdminToggle: document.getElementById('btn-admin-toggle'),
+      btnAdminClose: document.getElementById('btn-admin-close'),
+      btnAddShortcut: document.getElementById('btn-add-shortcut'),
+      
+      // Tabs
+      tabProfileTrigger: document.getElementById('tab-profile-trigger'),
+      tabProjectsTrigger: document.getElementById('tab-projects-trigger'),
+      tabExportTrigger: document.getElementById('tab-export-trigger'),
+      panelProfile: document.getElementById('panel-profile-section'),
+      panelProjects: document.getElementById('panel-projects-section'),
+      panelExport: document.getElementById('panel-export-section'),
+      
+      // Profile form inputs
+      inputProfileName: document.getElementById('input-profile-name'),
+      inputProfileRole: document.getElementById('input-profile-role'),
+      inputProfileAvatar: document.getElementById('input-profile-avatar'),
+      inputProfileBio: document.getElementById('input-profile-bio'),
+      socialGithub: document.getElementById('social-github'),
+      socialTwitter: document.getElementById('social-twitter'),
+      socialEmail: document.getElementById('social-email'),
+      btnSaveProfile: document.getElementById('btn-save-profile'),
+      
+      // Project form inputs
+      formHeading: document.getElementById('form-heading'),
+      projTitle: document.getElementById('proj-title'),
+      projUrl: document.getElementById('proj-url'),
+      projRepo: document.getElementById('proj-repo'),
+      projCategory: document.getElementById('proj-category'),
+      projGradient: document.getElementById('proj-gradient'),
+      projTags: document.getElementById('proj-tags'),
+      projDesc: document.getElementById('proj-desc'),
+      btnSaveProject: document.getElementById('btn-save-project'),
+      btnCancelEdit: document.getElementById('btn-cancel-edit'),
+      adminProjectsList: document.getElementById('admin-projects-list'),
+      
+      // Export backup elements
+      outputExportArea: document.getElementById('output-export-area'),
+      btnCopyExport: document.getElementById('btn-copy-export'),
+      btnDownloadBackup: document.getElementById('btn-download-backup'),
+      importBackupFile: document.getElementById('import-backup-file'),
+      
+      // Toast notifications
+      toast: document.getElementById('toast'),
+      toastIcon: document.getElementById('toast-icon'),
+      toastMsg: document.getElementById('toast-msg')
+    };
+
+    let editingProjectId = null;
+    let accessGranted = false;
+
+    function init() {
+      loadState();
+      renderProfile();
+      renderCategories();
+      renderProjectsGrid();
+      renderAdminProjectsList();
+      updateExportArea();
+      setupEventListeners();
+    }
+
+    function loadState() {
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V3');
+      if (stored) {
+        try {
+          appState = JSON.parse(stored);
+          appState.activeFilter = 'All';
+          return;
+        } catch(e) {
+          console.error("Cache corrupted, resetting state.", e);
+        }
+      }
+      appState.profile = { ...INITIAL_DATA.profile };
+      appState.projects = [ ...INITIAL_DATA.projects ];
+      appState.activeFilter = 'All';
+    }
+
+    function saveState() {
+      localStorage.setItem('SLATRO_STATE_DATA_V3', JSON.stringify(appState));
+      updateExportArea();
+    }
+
+    function renderProfile() {
+      const p = appState.profile;
+      dom.profileName.textContent = p.name || 'Slatro';
+      dom.profileRole.textContent = p.role || 'Web3 & Game Architect';
+      dom.profileBio.textContent = p.bio || '';
+      dom.profileImg.src = p.avatar || 'profile.jpg';
+      
+      if (dom.logoInitial) {
+        dom.logoInitial.textContent = (p.name || 'S').charAt(0).toUpperCase();
+      }
+
+      let html = '';
+      if (p.socials?.github) {
+        html += `<a href="${p.socials.github}" target="_blank" class="w-10 h-10 rounded-xl bg-dark-950 border border-gray-800 hover:border-brand-500 text-gray-400 hover:text-white transition duration-300 flex items-center justify-center text-sm shadow-sm" title="GitHub"><i class="fa-brands fa-github"></i></a>`;
+      }
+      if (p.socials?.twitter) {
+        html += `<a href="${p.socials.twitter}" target="_blank" class="w-10 h-10 rounded-xl bg-dark-950 border border-gray-800 hover:border-brand-500 text-gray-400 hover:text-white transition duration-300 flex items-center justify-center text-sm shadow-sm" title="X Profile">
+          <svg class="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>`;
+      }
+      if (p.socials?.email) {
+        const href = p.socials.email.startsWith('mailto:') ? p.socials.email : `mailto:${p.socials.email}`;
+        html += `<a href="${href}" class="w-10 h-10 rounded-xl bg-dark-950 border border-gray-800 hover:border-brand-500 text-gray-400 hover:text-white transition duration-300 flex items-center justify-center text-sm shadow-sm" title="Send Email"><i class="fa-solid fa-envelope"></i></a>`;
+      }
+      dom.socialLinksContainer.innerHTML = html;
+
+      dom.inputProfileName.value = p.name || '';
+      dom.inputProfileRole.value = p.role || '';
+      dom.inputProfileAvatar.value = p.avatar || '';
+      dom.inputProfileBio.value = p.bio || '';
+      dom.socialGithub.value = p.socials?.github || '';
+      dom.socialTwitter.value = p.socials?.twitter || '';
+      dom.socialEmail.value = p.socials?.email || '';
+    }
+
+    function renderCategories() {
+      const explicitCategories = ['All', 'DeFi / Blockchain', 'Games', 'Utilities'];
+      let html = '';
+      explicitCategories.forEach(cat => {
+        const isActive = appState.activeFilter === cat;
+        if (isActive) {
+          html += `<button onclick="setFilter('${cat}')" class="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold shadow-md shadow-brand-500/10 transition-all whitespace-nowrap">${cat}</button>`;
+        } else {
+          html += `<button onclick="setFilter('${cat}')" class="px-4 py-2 rounded-xl bg-dark-950 hover:bg-gray-800 border border-gray-800/80 hover:border-gray-700 text-gray-400 hover:text-gray-200 text-xs font-semibold transition-all whitespace-nowrap">${cat}</button>`;
+        }
+      });
+      dom.categoriesContainer.innerHTML = html;
+    }
+
+    function renderProjectsGrid() {
+      const search = dom.searchInput.value.toLowerCase().trim();
+      const filter = appState.activeFilter;
+      
+      const filtered = appState.projects.filter(p => {
+        const matchesCategory = (filter === 'All' || p.category === filter);
+        const matchesSearch = (!search || p.title.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search) || p.tags.toLowerCase().includes(search));
+        return matchesCategory && matchesSearch;
+      });
+
+      dom.projectCount.textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        dom.emptyState.classList.remove('hidden');
+        dom.projectsGrid.innerHTML = '';
+        return;
+      }
+      dom.emptyState.classList.add('hidden');
+
+      let html = '';
+      filtered.forEach(p => {
+        const tagsArr = p.tags.split(',').map(t => t.trim()).filter(Boolean);
+        let tagsHtml = '';
+        tagsArr.forEach(t => {
+          tagsHtml += `<span class="px-2 py-0.5 rounded bg-dark-950 text-gray-400 border border-gray-850 text-[9px] font-mono tracking-wide">${t}</span>`;
+        });
+
+        const repoLinkHtml = p.repo && p.repo !== '#' && p.repo !== 'https://github.com/'
+          ? `<a href="${p.repo}" target="_blank" class="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-dark-950 hover:bg-gray-800 border border-gray-800 text-xs font-bold text-gray-300 hover:text-white transition-all w-24">
+               <i class="fa-brands fa-github text-xs"></i> Source
+             </a>`
+          : `<span class="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-dark-950/40 border border-gray-800/40 text-[10px] font-mono text-gray-500 w-24" title="Repository is Private">
+               <i class="fa-solid fa-lock text-[9px]"></i> Private
+             </span>`;
+
+        html += `
+          <div class="project-card glass-card-premium rounded-2xl overflow-hidden flex flex-col group relative">
+            <div class="h-1.5 w-full bg-gradient-to-r ${p.gradient || 'from-brand-500 to-cyan-500'}"></div>
+            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-start justify-between gap-4 mb-4">
+                  <span class="px-2.5 py-0.5 rounded-lg bg-brand-500/10 text-brand-400 text-[9px] font-bold tracking-wider uppercase font-mono border border-brand-500/10">
+                    ${p.category}
+                  </span>
+                  <span class="text-[9px] text-gray-500 font-mono tracking-wider uppercase font-semibold">Active Build</span>
+                </div>
+                <h3 class="font-display font-extrabold text-base sm:text-lg text-white group-hover:text-brand-400 transition-colors mb-2 tracking-tight">
+                  ${p.title}
+                </h3>
+                <p class="text-xs text-gray-400 leading-relaxed mb-4 min-h-[50px]">
+                  ${p.desc || ''}
+                </p>
+              </div>
+              <div>
+                <div class="flex flex-wrap gap-1 mb-5">
+                  ${tagsHtml}
+                </div>
+                <div class="flex gap-2">
+                  <a href="${p.url}" target="_blank" 
+                     class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-600 hover:from-brand-500 hover:to-cyan-500 text-xs font-bold text-white transition-all shadow-md shadow-brand-500/5 hover:shadow-brand-500/15">
+                    <span>Launch App</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-white"></i>
+                  </a>
+                  ${repoLinkHtml}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      dom.projectsGrid.innerHTML = html;
+    }
+
+    function renderAdminProjectsList() {
+      if (appState.projects.length === 0) {
+        dom.adminProjectsList.innerHTML = `<p class="text-xs text-gray-500 italic text-center py-4 bg-dark-950/40 border border-gray-800 rounded-xl">No applications recorded yet.</p>`;
+        return;
+      }
+
+      let html = '';
+      appState.projects.forEach(p => {
+        html += `
+          <div class="flex items-center justify-between p-3 rounded-xl bg-dark-950 border border-gray-850 hover:border-gray-800 transition-colors">
+            <div class="min-w-0 pr-4">
+              <h4 class="text-xs font-bold text-gray-200 truncate">${p.title}</h4>
+              <p class="text-[9px] text-gray-500 truncate max-w-xs font-mono">${p.url}</p>
+            </div>
+            <div class="flex items-center gap-1.5 flex-shrink-0">
+              <button onclick="startEditProject('${p.id}')" class="h-8 w-8 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-400 hover:text-white transition-colors flex items-center justify-center text-xs border border-gray-800">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button onclick="deleteProject('${p.id}')" class="h-8 w-8 rounded-lg bg-red-500/5 hover:bg-red-500/15 text-red-400 hover:text-red-300 transition-colors flex items-center justify-center text-xs border border-red-500/10">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      dom.adminProjectsList.innerHTML = html;
+    }
+
+    function updateExportArea() {
+      const exportBlock = { profile: appState.profile, projects: appState.projects };
+      dom.outputExportArea.value = `const INITIAL_DATA = ${JSON.stringify(exportBlock, null, 2)};`;
+    }
+
+    window.setFilter = function(filterValue) {
+      appState.activeFilter = filterValue;
+      renderCategories();
+      renderProjectsGrid();
+    };
+
+    function switchAdminTab(tab) {
+      dom.tabProfileTrigger.classList.remove('border-brand-500', 'text-brand-400');
+      dom.tabProfileTrigger.classList.add('border-transparent', 'text-gray-400');
+      dom.tabProjectsTrigger.classList.remove('border-brand-500', 'text-brand-400');
+      dom.tabProjectsTrigger.classList.add('border-transparent', 'text-gray-400');
+      dom.tabExportTrigger.classList.remove('border-brand-500', 'text-brand-400');
+      dom.tabExportTrigger.classList.add('border-transparent', 'text-gray-400');
+
+      dom.panelProfile.classList.add('hidden');
+      dom.panelProjects.classList.add('hidden');
+      dom.panelExport.classList.add('hidden');
+
+      if (tab === 'profile') {
+        dom.tabProfileTrigger.classList.add('border-brand-500', 'text-brand-400');
+        dom.tabProfileTrigger.classList.remove('border-transparent', 'text-gray-400');
+        dom.panelProfile.classList.remove('hidden');
+      } else if (tab === 'projects') {
+        dom.tabProjectsTrigger.classList.add('border-brand-500', 'text-brand-400');
+        dom.tabProjectsTrigger.classList.remove('border-transparent', 'text-gray-400');
+        dom.panelProjects.classList.remove('hidden');
+      } else if (tab === 'export') {
+        dom.tabExportTrigger.classList.add('border-brand-500', 'text-brand-400');
+        dom.tabExportTrigger.classList.remove('border-transparent', 'text-gray-400');
+        dom.panelExport.classList.remove('hidden');
+      }
+    }
+
+    let toastTimeout;
+    function showToast(message, type = "success") {
+      dom.toastMsg.textContent = message;
+      if (type === "success") {
+        dom.toastIcon.innerHTML = `<i class="fa-solid fa-circle-check text-brand-400 text-base"></i>`;
+      } else if (type === "error") {
+        dom.toastIcon.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-500 text-base"></i>`;
+      } else {
+        dom.toastIcon.innerHTML = `<i class="fa-solid fa-circle-info text-cyan-400 text-base"></i>`;
+      }
+      dom.toast.classList.remove('translate-y-24', 'opacity-0');
+      dom.toast.classList.add('translate-y-0', 'opacity-100');
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        dom.toast.classList.add('translate-y-24', 'opacity-0');
+        dom.toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3000);
+    }
+
+    window.startEditProject = function(id) {
+      const proj = appState.projects.find(p => p.id === id);
+      if (!proj) return;
+      
+      editingProjectId = id;
+      dom.formHeading.innerHTML = `<i class="fa-solid fa-pen-to-square text-amber-500"></i> Editing: ${proj.title}`;
+      dom.projTitle.value = proj.title || '';
+      dom.projUrl.value = proj.url || '';
+      dom.projRepo.value = proj.repo || '';
+      dom.projCategory.value = proj.category || 'Web Apps';
+      dom.projGradient.value = proj.gradient || 'from-brand-500 to-cyan-500';
+      dom.projTags.value = proj.tags || '';
+      dom.projDesc.value = proj.desc || '';
+      
+      dom.btnCancelEdit.classList.remove('hidden');
+      dom.btnSaveProject.textContent = 'Save Changes';
+      dom.panelProjects.scrollTop = 0;
+    };
+
+    function resetProjectForm() {
+      editingProjectId = null;
+      dom.formHeading.innerHTML = `<i class="fa-solid fa-circle-plus text-brand-500"></i> Add New Application Entry`;
+      dom.projTitle.value = '';
+      dom.projUrl.value = '';
+      dom.projRepo.value = '';
+      dom.projCategory.value = 'Web Apps';
+      dom.projGradient.value = 'from-brand-500 to-cyan-500';
+      dom.projTags.value = '';
+      dom.projDesc.value = '';
+      dom.btnCancelEdit.classList.add('hidden');
+      dom.btnSaveProject.textContent = 'Add Project Entry';
+    }
+
+    window.deleteProject = function(id) {
+      if (!confirm("Are you sure you want to delete this project?")) return;
+      appState.projects = appState.projects.filter(p => p.id !== id);
+      saveState();
+      renderProjectsGrid();
+      renderAdminProjectsList();
+      showToast("Application record deleted successfully.");
+      if (editingProjectId === id) resetProjectForm();
+    };
+
+    function checkAdminAccess(successCallback) {
+      if (accessGranted) {
+        successCallback();
+        return;
+      }
+      
+      // Reset and display passcode overlay modal
+      dom.passcodeInput.value = '';
+      dom.passcodeModal.classList.remove('hidden');
+      dom.passcodeInput.focus();
+
+      // Store callback dynamically
+      dom.btnPasscodeSubmit.onclick = () => {
+        const pin = dom.passcodeInput.value;
+        if (pin === ADMIN_SECRET_KEY) {
+          accessGranted = true;
+          dom.passcodeModal.classList.add('hidden');
+          showToast("Access Granted. Welcome Administrator!");
+          successCallback();
+        } else {
+          showToast("Access Denied: Invalid Security Key", "error");
+        }
+      };
+
+      // Support enter key in password input
+      dom.passcodeInput.onkeydown = (e) => {
+        if (e.key === 'Enter') {
+          dom.btnPasscodeSubmit.click();
+        }
+      };
+    }
+
+    function setupEventListeners() {
+      dom.searchInput.addEventListener('input', () => {
+        renderProjectsGrid();
+      });
+
+      // Quick shortcut add button
+      if (dom.btnAddShortcut) {
+        dom.btnAddShortcut.addEventListener('click', () => {
+          checkAdminAccess(() => {
+            dom.adminPanel.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+            switchAdminTab('projects');
+            dom.projTitle.focus();
+          });
+        });
+      }
+
+      const openAdmin = () => {
+        checkAdminAccess(() => {
+          dom.adminPanel.classList.remove('hidden');
+          document.body.classList.add('overflow-hidden');
+        });
+      };
+      
+      const closeAdmin = () => {
+        dom.adminPanel.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      };
+
+      if (dom.btnAdminToggle) {
+        dom.btnAdminToggle.addEventListener('click', openAdmin);
+      }
+      dom.btnAdminClose.addEventListener('click', closeAdmin);
+      dom.adminOverlay.addEventListener('click', closeAdmin);
+      
+      // Close Passcode modal
+      dom.btnPasscodeClose.addEventListener('click', () => {
+        dom.passcodeModal.classList.add('hidden');
+      });
+      dom.passcodeOverlay.addEventListener('click', () => {
+        dom.passcodeModal.classList.add('hidden');
+      });
+
+      // Navigation tab bindings
+      dom.tabProfileTrigger.addEventListener('click', () => switchAdminTab('profile'));
+      dom.tabProjectsTrigger.addEventListener('click', () => switchAdminTab('projects'));
+      dom.tabExportTrigger.addEventListener('click', () => switchAdminTab('export'));
+
+      // Save Profile button
+      dom.btnSaveProfile.addEventListener('click', () => {
+        appState.profile.name = dom.inputProfileName.value.trim();
+        appState.profile.role = dom.inputProfileRole.value.trim();
+        appState.profile.avatar = dom.inputProfileAvatar.value.trim();
+        appState.profile.bio = dom.inputProfileBio.value.trim();
+        
+        if (!appState.profile.socials) appState.profile.socials = {};
+        appState.profile.socials.github = dom.socialGithub.value.trim();
+        appState.profile.socials.twitter = dom.socialTwitter.value.trim();
+        appState.profile.socials.email = dom.socialEmail.value.trim();
+        
+        saveState();
+        renderProfile();
+        showToast("Profile configuration and links updated!");
+      });
+
+      // Add/Edit project save button
+      dom.btnSaveProject.addEventListener('click', () => {
+        const title = dom.projTitle.value.trim();
+        const url = dom.projUrl.value.trim();
+        
+        if (!title || !url) {
+          showToast("Application Title and Launch URL are mandatory!", "error");
+          return;
+        }
+
+        if (editingProjectId) {
+          const idx = appState.projects.findIndex(p => p.id === editingProjectId);
+          if (idx !== -1) {
+            appState.projects[idx].title = title;
+            appState.projects[idx].url = url;
+            appState.projects[idx].repo = dom.projRepo.value.trim();
+            appState.projects[idx].category = dom.projCategory.value;
+            appState.projects[idx].gradient = dom.projGradient.value;
+            appState.projects[idx].tags = dom.projTags.value;
+            appState.projects[idx].desc = dom.projDesc.value.trim();
+          }
+          showToast("Application configuration saved.");
+        } else {
+          const newId = "proj_" + Date.now();
+          appState.projects.push({
+            id: newId,
+            title: title,
+            url: url,
+            repo: dom.projRepo.value.trim(),
+            category: dom.projCategory.value,
+            gradient: dom.projGradient.value,
+            tags: dom.projTags.value,
+            desc: dom.projDesc.value.trim()
+          });
+          showToast("New application entry added successfully.");
+        }
+
+        saveState();
+        resetProjectForm();
+        renderProjectsGrid();
+        renderAdminProjectsList();
+      });
+
+      dom.btnCancelEdit.addEventListener('click', resetProjectForm);
+
+      // Copy Javascript Export area
+      dom.btnCopyExport.addEventListener('click', () => {
+        dom.outputExportArea.select();
+        document.execCommand('copy');
+        showToast("Code block copied to clipboard!");
+      });
+
+      // Download full configuration backup
+      dom.btnDownloadBackup.addEventListener('click', () => {
+        const backupStr = JSON.stringify(appState, null, 2);
+        const blob = new Blob([backupStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `slatro-backup-${new Date().toISOString().slice(0,10)}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("Backup configuration downloaded successfully.");
+      });
+
+      // Import configuration file
+      dom.importBackupFile.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          try {
+            const parsed = JSON.parse(evt.target.result);
+            if (parsed.profile && parsed.projects) {
+              appState = parsed;
+              appState.activeFilter = 'All';
+              saveState();
+              renderProfile();
+              renderCategories();
+              renderProjectsGrid();
+              renderAdminProjectsList();
+              showToast("Backup configuration loaded successfully!");
+            } else {
+              showToast("Invalid configuration layout structure.", "error");
+            }
+          } catch(err) {
+            showToast("Failed reading target parsing configuration.", "error");
+          }
+        };
+        reader.readAsText(file);
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>
