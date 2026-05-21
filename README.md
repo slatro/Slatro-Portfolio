@@ -1,4 +1,4 @@
-# Slatro Portfolio | Premium Developer Hub & Web3 Showcase
+# Slatro Portfolio | Developer Hub & Web3 Showcase
 
 A highly performant, single-page developer showcase designed completely from scratch. This custom portfolio features an elegant glassmorphism dashboard layout, dynamic animating background light glows, a sleek developer grid overlay, and fully polished micro-interactions.
 
