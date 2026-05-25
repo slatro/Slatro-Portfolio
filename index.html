@@ -623,6 +623,16 @@
       },
       "projects": [
         {
+          "id": "proj_auraos",
+          "title": "AURA_OS",
+          "url": "https://aura-nw.vercel.app",
+          "repo": "https://github.com/slatro",
+          "desc": "A decentralized, high-performance SocialFi operating system built on Monad. Fuses web-native social graph interactions with ultra-scalable DeFi mechanics, enabling secure, lightning-fast community monetization and ownership.",
+          "category": "DeFi / Blockchain",
+          "tags": "Monad, SocialFi, EVM, Smart Contracts, React, Web3",
+          "gradient": "from-indigo-500 via-purple-500 to-pink-500"
+        },
+        {
           "id": "proj_arcfx",
           "title": "ArcFX AMM",
           "url": "https://arc-fx.vercel.app/#",
@@ -752,7 +762,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V3');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V4');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -768,7 +778,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V3', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V4', JSON.stringify(appState));
       updateExportArea();
     }
 
