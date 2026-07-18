@@ -687,9 +687,9 @@
           "title": "Stable",
           "url": "https://stables-fx.vercel.app/#",
           "repo": "https://github.com/",
-          "desc": "A decentralized stablecoin FX AMM on the Stable Testnet. Enables capital-efficient swaps, stablecoin liquidity pools, and peer-to-peer forex trading with predictable, USDC-denominated gas fees.",
+          "desc": "A decentralized stablecoin FX AMM on the Arc Testnet. Enables capital-efficient swaps, stablecoin liquidity pools, and peer-to-peer forex trading with predictable, USDC-denominated gas fees.",
           "category": "DeFi / Blockchain",
-          "tags": "Solidity, AMM, Stablecoin, Stable Network, Web3.js",
+          "tags": "Solidity, AMM, Stablecoin, Arc Network, Web3.js",
           "gradient": "from-emerald-500 to-teal-500"
         },
         {
@@ -812,7 +812,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V11');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V12');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -828,7 +828,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V11', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V12', JSON.stringify(appState));
       updateExportArea();
     }
 
