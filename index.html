@@ -217,7 +217,7 @@
           </div>
 
           <p id="profile-bio" class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6 max-w-sm">
-            Building decentralized stablecoin AMMs, high-performance Web3 arcade systems, and rich storytelling game spaces on Monad, Arc, Base, and Seismic networks.
+            Building decentralized stablecoin AMMs, high-performance Web3 arcade systems, and rich storytelling game spaces on Arc, Base, Monad, and Seismic networks.
           </p>
 
           <!-- Social links -->
@@ -618,7 +618,7 @@
       "profile": {
         "name": "Slatro",
         "role": "Web3 & Game Architect",
-        "bio": "Building decentralized stablecoin AMMs, high-performance Web3 arcade systems, and rich storytelling game spaces on Monad, Arc, Base, and Seismic networks.",
+        "bio": "Building decentralized stablecoin AMMs, high-performance Web3 arcade systems, and rich storytelling game spaces on Arc, Base, Monad, and Seismic networks.",
         "avatar": "profile.jpg",
         "socials": {
           "github": "https://github.com/slatro",
@@ -828,7 +828,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V19');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V20');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -844,7 +844,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V19', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V20', JSON.stringify(appState));
       updateExportArea();
     }
 
@@ -886,11 +886,11 @@
     function renderCategories() {
       const explicitCategories = ['All', 'DeFi / Blockchain', 'Games', 'Social', 'Utilities'];
       
-      // Dynamically extract unique networks from the current projects list and sort 'Multichain' to the front
+      // Dynamically extract unique networks from the current projects list and sort 'Multichain' to the very end
       const rawNetworks = [...new Set(appState.projects.map(p => p.network).filter(Boolean))];
       const uniqueNetworks = rawNetworks.sort((a, b) => {
-        if (a === 'Multichain') return -1;
-        if (b === 'Multichain') return 1;
+        if (a === 'Multichain') return 1;
+        if (b === 'Multichain') return -1;
         return a.localeCompare(b);
       });
       
@@ -908,18 +908,18 @@
       
       // Separator Line
       html += `<div class="h-6 w-px bg-gray-800 mx-2 self-center flex-shrink-0"></div>`;
-      
-      // Network Buttons
-      uniqueNetworks.forEach((net, index) => {
-        const isLast = index === uniqueNetworks.length - 1;
-        const marginClass = isLast ? 'mr-8' : ''; // Spacing buffer to prevent clipping on horizontal scroll
+         // Network Buttons
+      uniqueNetworks.forEach((net) => {
         const isActive = appState.activeFilter === `net:${net}`;
         if (isActive) {
-          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-cyan-600 text-white text-xs font-bold shadow-md shadow-cyan-500/10 transition-all whitespace-nowrap font-mono ${marginClass}">${net}</button>`;
+          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-cyan-600 text-white text-xs font-bold shadow-md shadow-cyan-500/10 transition-all whitespace-nowrap font-mono">${net}</button>`;
         } else {
-          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-dark-950 hover:bg-gray-800 border border-gray-850 hover:border-gray-700 text-cyan-400 hover:text-cyan-300 text-xs font-semibold transition-all whitespace-nowrap font-mono ${marginClass}">${net}</button>`;
+          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-dark-950 hover:bg-gray-800 border border-gray-850 hover:border-gray-700 text-cyan-400 hover:text-cyan-300 text-xs font-semibold transition-all whitespace-nowrap font-mono">${net}</button>`;
         }
       });
+      
+      // Fixed extra right padding spacer block to prevent horizontal scroll clipping on all browsers
+      html += `<div class="w-12 h-2 flex-shrink-0"></div>`;
       
       dom.categoriesContainer.innerHTML = html;
     }
