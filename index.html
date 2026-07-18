@@ -217,7 +217,7 @@
           </div>
 
           <p id="profile-bio" class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6 max-w-sm">
-            Crafting decentralized stablecoin AMMs, high-performance Web3 arcade systems, and rich storytelling game spaces on Arc, Base, and Seismic networks.
+            Crafting decentralized stablecoin AMMs, high-performance Web3 arcade systems, and rich storytelling game spaces on Monad, Arc, Base, and Seismic networks.
           </p>
 
           <!-- Social links -->
@@ -618,7 +618,7 @@
       "profile": {
         "name": "Slatro",
         "role": "Web3 & Game Architect",
-        "bio": "Crafting decentralized stablecoin AMMs, high-performance Web3 arcade systems, and rich storytelling game spaces on Arc, Base, and Seismic networks.",
+        "bio": "Crafting decentralized stablecoin AMMs, high-performance Web3 arcade systems, and rich storytelling game spaces on Monad, Arc, Base, and Seismic networks.",
         "avatar": "profile.jpg",
         "socials": {
           "github": "https://github.com/slatro",
@@ -828,7 +828,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V16');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V17');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -844,7 +844,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V16', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V17', JSON.stringify(appState));
       updateExportArea();
     }
 
