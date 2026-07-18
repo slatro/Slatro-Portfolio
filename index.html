@@ -824,7 +824,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V27');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V28');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -840,7 +840,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V27', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V28', JSON.stringify(appState));
       updateExportArea();
     }
 
@@ -922,8 +922,8 @@
           inactive: 'text-emerald-400 hover:text-emerald-300 border-gray-850 hover:border-emerald-900/60'
         },
         'Seismic': {
-          active: 'bg-[#3d2830] text-white shadow-[#3d2830]/10 border-[#3d2830] [text-shadow:0_0_8px_rgba(94,63,74,0.6)]',
-          inactive: 'text-[#3d2830] hover:text-[#5e3f4a] border-gray-850 hover:border-[#3d2830]/40'
+          active: 'bg-[#3d2830] text-white shadow-[#3d2830]/10 border-[#3d2830] [text-shadow:0_0_8px_rgba(142,108,119,0.6)]',
+          inactive: 'text-[#8e6c77] hover:text-[#b89fa6] border-gray-850 hover:border-[#3d2830]/40'
         },
         'Monad': {
           active: 'bg-[#836efd] text-white shadow-[#836efd]/10 border-[#836efd] [text-shadow:0_0_8px_rgba(131,110,253,0.6)]',
