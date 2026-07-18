@@ -320,7 +320,7 @@
           </div>
 
           <!-- Category Badges Filter Strip -->
-          <div class="flex items-center overflow-x-auto gap-2 pb-2 pr-4 custom-scrollbar" id="categories-container"></div>
+          <div class="flex items-center overflow-x-auto gap-2 pb-2 pr-8 custom-scrollbar" id="categories-container"></div>
         </div>
 
         <!-- Empty State -->
@@ -828,7 +828,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V15');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V16');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -844,7 +844,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V15', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V16', JSON.stringify(appState));
       updateExportArea();
     }
 
@@ -905,12 +905,14 @@
       html += `<div class="h-6 w-px bg-gray-800 mx-2 self-center flex-shrink-0"></div>`;
       
       // Network Buttons
-      uniqueNetworks.forEach(net => {
+      uniqueNetworks.forEach((net, index) => {
+        const isLast = index === uniqueNetworks.length - 1;
+        const marginClass = isLast ? 'mr-8' : ''; // Spacing buffer to prevent clipping on horizontal scroll
         const isActive = appState.activeFilter === `net:${net}`;
         if (isActive) {
-          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-cyan-600 text-white text-xs font-bold shadow-md shadow-cyan-500/10 transition-all whitespace-nowrap font-mono">${net}</button>`;
+          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-cyan-600 text-white text-xs font-bold shadow-md shadow-cyan-500/10 transition-all whitespace-nowrap font-mono ${marginClass}">${net}</button>`;
         } else {
-          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-dark-950 hover:bg-gray-800 border border-gray-850 hover:border-gray-700 text-cyan-400 hover:text-cyan-300 text-xs font-semibold transition-all whitespace-nowrap font-mono">${net}</button>`;
+          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-dark-950 hover:bg-gray-800 border border-gray-850 hover:border-gray-700 text-cyan-400 hover:text-cyan-300 text-xs font-semibold transition-all whitespace-nowrap font-mono ${marginClass}">${net}</button>`;
         }
       });
       
