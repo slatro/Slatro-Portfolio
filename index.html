@@ -828,7 +828,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V20');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V21');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -844,7 +844,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V20', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V21', JSON.stringify(appState));
       updateExportArea();
     }
 
@@ -908,13 +908,46 @@
       
       // Separator Line
       html += `<div class="h-6 w-px bg-gray-800 mx-2 self-center flex-shrink-0"></div>`;
-         // Network Buttons
+      // Network Buttons Custom Styles Configuration
+      const networkStyles = {
+        'Arc': {
+          active: 'bg-sky-500 text-white shadow-sky-500/10 border-sky-500',
+          inactive: 'text-sky-400 hover:text-sky-300 border-gray-850 hover:border-sky-900/60'
+        },
+        'Base': {
+          active: 'bg-blue-600 text-white shadow-blue-500/10 border-blue-600',
+          inactive: 'text-blue-500 hover:text-blue-400 border-gray-850 hover:border-blue-900/60'
+        },
+        'Abstract': {
+          active: 'bg-emerald-500 text-white shadow-emerald-500/10 border-emerald-500',
+          inactive: 'text-emerald-400 hover:text-emerald-300 border-gray-850 hover:border-emerald-900/60'
+        },
+        'Seismic': {
+          active: 'bg-amber-700 text-white shadow-amber-700/10 border-amber-700',
+          inactive: 'text-amber-500/80 hover:text-amber-400 border-gray-850 hover:border-amber-900/60'
+        },
+        'Monad': {
+          active: 'bg-purple-600 text-white shadow-purple-500/10 border-purple-600',
+          inactive: 'text-purple-400 hover:text-purple-300 border-gray-850 hover:border-purple-900/60'
+        },
+        'Multichain': {
+          active: 'bg-white text-dark-950 shadow-white/10 border-white',
+          inactive: 'text-gray-300 hover:text-white border-gray-850 hover:border-gray-700'
+        }
+      };
+
+      // Network Buttons
       uniqueNetworks.forEach((net) => {
         const isActive = appState.activeFilter === `net:${net}`;
+        const styles = networkStyles[net] || {
+          active: 'bg-cyan-600 text-white shadow-cyan-500/10 border-cyan-600',
+          inactive: 'text-cyan-400 hover:text-cyan-300 border-gray-850 hover:border-gray-700'
+        };
+
         if (isActive) {
-          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-cyan-600 text-white text-xs font-bold shadow-md shadow-cyan-500/10 transition-all whitespace-nowrap font-mono">${net}</button>`;
+          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl text-xs font-bold shadow-md transition-all border whitespace-nowrap font-mono ${styles.active}">${net}</button>`;
         } else {
-          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-dark-950 hover:bg-gray-800 border border-gray-850 hover:border-gray-700 text-cyan-400 hover:text-cyan-300 text-xs font-semibold transition-all whitespace-nowrap font-mono">${net}</button>`;
+          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-dark-950 border text-xs font-semibold transition-all whitespace-nowrap font-mono ${styles.inactive}">${net}</button>`;
         }
       });
       
