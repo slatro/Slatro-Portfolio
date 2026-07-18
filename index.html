@@ -496,7 +496,7 @@
                   </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label class="block text-[10px] text-gray-400 mb-1.5 font-bold uppercase tracking-wider">GitHub Repository (URL)</label>
                     <input type="text" id="proj-repo" placeholder="https://github.com/slatro/engine" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 font-mono">
@@ -506,8 +506,13 @@
                     <select id="proj-category" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 font-medium">
                       <option value="DeFi / Blockchain">DeFi / Blockchain</option>
                       <option value="Games">Games</option>
+                      <option value="Social">Social</option>
                       <option value="Utilities">Utilities</option>
                     </select>
+                  </div>
+                  <div>
+                    <label class="block text-[10px] text-gray-400 mb-1.5 font-bold uppercase tracking-wider">Target Network / Chain</label>
+                    <input type="text" id="proj-network" placeholder="e.g. Monad, Arc, Base" class="w-full bg-dark-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 font-medium">
                   </div>
                 </div>
 
@@ -623,72 +628,13 @@
       },
       "projects": [
         {
-          "id": "proj_monadgotchi",
-          "title": "Monadgotchi",
-          "url": "https://monadgotchii.vercel.app/",
-          "repo": "https://github.com/slatro",
-          "desc": "An interactive, fully animated web-based Tamagotchi clone built on the Monad network. Connect your wallet, adopt a digital pet, feed and play with it, and track its age, level, and health state directly on-chain.",
-          "category": "Games",
-          "tags": "Monad Chain, Tamagotchi, ERC-721, On-chain, Ethers.js, Games",
-          "gradient": "from-purple-500 via-indigo-500 to-indigo-800"
-        },
-        {
-          "id": "proj_architectcard",
-          "title": "Architect Card",
-          "url": "https://architect-card.vercel.app/",
-          "repo": "https://github.com/slatro",
-          "desc": "A premium cyberpunk-themed Developer ID and profile card generator. Customize stats, select developer archetypes, toggle grid layers, and generate a downloadable cyberpunk ID badge.",
-          "category": "Utilities",
-          "tags": "Cyberpunk, Developer Card, Web3, Canvas, Generator",
-          "gradient": "from-cyan-400 via-blue-500 to-indigo-600"
-        },
-        {
-          "id": "proj_seismiccards",
-          "title": "Seismic Card",
-          "url": "https://seismicc-cards.vercel.app/",
-          "repo": "https://github.com/slatro",
-          "desc": "A retro-pixel profile card generator for the Seismic community. Enter your X handle and Discord Magnitude role, fill in core metrics (messages, tweets, events, arts), and download a shareable animated GIF or static PNG card.",
-          "category": "Utilities",
-          "tags": "Seismic, Profile Card, Discord Roles, PNG, GIF, Community",
-          "gradient": "from-yellow-400 via-orange-500 to-red-500"
-        },
-        {
-          "id": "proj_abstractchad",
-          "title": "Abstract Chad Score",
-          "url": "https://abstract-chad.vercel.app/",
-          "repo": "https://github.com/slatro",
-          "desc": "An on-chain reputation scanner for the Abstract ecosystem. Input your AGW wallet address and X handle to generate a shareable Chad Score card, combining Portal tier, Discord role, onchain activity, and social signal into a single score.",
-          "category": "Utilities",
-          "tags": "Abstract Chain, AGW, Reputation, Score Card, Web3, Analytics",
-          "gradient": "from-green-400 to-emerald-600"
-        },
-        {
-          "id": "proj_abstractquests",
-          "title": "Abstract Quests",
-          "url": "https://abtract-quest.vercel.app/",
-          "repo": "https://github.com/slatro",
-          "desc": "An interactive questing and badge collection platform built on the Abstract chain. Users complete daily ecosystem tasks, mint ERC-1155 badges, stack XP, and climb the public leaderboard.",
-          "category": "Games",
-          "tags": "Abstract Chain, Quests, Badges, ERC-1155, Next.js, Web3",
-          "gradient": "from-cyan-400 via-purple-500 to-emerald-400"
-        },
-        {
-          "id": "proj_auraos",
-          "title": "AURA_OS",
-          "url": "https://aura-nw.vercel.app",
-          "repo": "https://github.com/slatro",
-          "desc": "A decentralized, high-performance SocialFi operating system built on Monad. Fuses web-native social graph interactions with ultra-scalable DeFi mechanics, enabling secure, lightning-fast community monetization and ownership.",
-          "category": "Social",
-          "tags": "Monad, SocialFi, EVM, Smart Contracts, React, Web3",
-          "gradient": "from-indigo-500 via-purple-500 to-pink-500"
-        },
-        {
           "id": "proj_arcfx",
           "title": "Stable",
           "url": "https://stables-fx.vercel.app/#",
           "repo": "https://github.com/",
           "desc": "A decentralized stablecoin FX AMM on the Arc Testnet. Enables capital-efficient swaps, stablecoin liquidity pools, and peer-to-peer forex trading with predictable, USDC-denominated gas fees.",
           "category": "DeFi / Blockchain",
+          "network": "Arc",
           "tags": "Solidity, AMM, Stablecoin, Arc Network, Web3.js",
           "gradient": "from-emerald-500 to-teal-500"
         },
@@ -699,8 +645,75 @@
           "repo": "https://github.com/",
           "desc": "An interactive Web3 bridge-building arcade game integrated with the Base chain. Features wallet connectivity, daily check-ins, leaderboards, and on-chain action mechanics.",
           "category": "Games",
+          "network": "Base",
           "tags": "HTML5 Canvas, Web3, Base Chain, WalletConnect, Gamification",
           "gradient": "from-blue-600 to-indigo-600"
+        },
+        {
+          "id": "proj_monadgotchi",
+          "title": "Monadgotchi",
+          "url": "https://monadgotchii.vercel.app/",
+          "repo": "https://github.com/slatro",
+          "desc": "An interactive, fully animated web-based Tamagotchi clone built on the Monad network. Connect your wallet, adopt a digital pet, feed and play with it, and track its age, level, and health state directly on-chain.",
+          "category": "Games",
+          "network": "Monad",
+          "tags": "Monad Chain, Tamagotchi, ERC-721, On-chain, Ethers.js, Games",
+          "gradient": "from-purple-500 via-indigo-500 to-indigo-800"
+        },
+        {
+          "id": "proj_architectcard",
+          "title": "Architect Card",
+          "url": "https://architect-card.vercel.app/",
+          "repo": "https://github.com/slatro",
+          "desc": "A premium cyberpunk-themed Developer ID and profile card generator. Customize stats, select developer archetypes, toggle grid layers, and generate a downloadable cyberpunk ID badge.",
+          "category": "Utilities",
+          "network": "Multi",
+          "tags": "Cyberpunk, Developer Card, Web3, Canvas, Generator",
+          "gradient": "from-cyan-400 via-blue-500 to-indigo-600"
+        },
+        {
+          "id": "proj_seismiccards",
+          "title": "Seismic Card",
+          "url": "https://seismicc-cards.vercel.app/",
+          "repo": "https://github.com/slatro",
+          "desc": "A retro-pixel profile card generator for the Seismic community. Enter your X handle and Discord Magnitude role, fill in core metrics (messages, tweets, events, arts), and download a shareable animated GIF or static PNG card.",
+          "category": "Utilities",
+          "network": "Seismic",
+          "tags": "Seismic, Profile Card, Discord Roles, PNG, GIF, Community",
+          "gradient": "from-yellow-400 via-orange-500 to-red-500"
+        },
+        {
+          "id": "proj_abstractchad",
+          "title": "Abstract Chad Score",
+          "url": "https://abstract-chad.vercel.app/",
+          "repo": "https://github.com/slatro",
+          "desc": "An on-chain reputation scanner for the Abstract ecosystem. Input your AGW wallet address and X handle to generate a shareable Chad Score card, combining Portal tier, Discord role, onchain activity, and social signal into a single score.",
+          "category": "Utilities",
+          "network": "Abstract",
+          "tags": "Abstract Chain, AGW, Reputation, Score Card, Web3, Analytics",
+          "gradient": "from-green-400 to-emerald-600"
+        },
+        {
+          "id": "proj_abstractquests",
+          "title": "Abstract Quests",
+          "url": "https://abtract-quest.vercel.app/",
+          "repo": "https://github.com/slatro",
+          "desc": "An interactive questing and badge collection platform built on the Abstract chain. Users complete daily ecosystem tasks, mint ERC-1155 badges, stack XP, and climb the public leaderboard.",
+          "category": "Games",
+          "network": "Abstract",
+          "tags": "Abstract Chain, Quests, Badges, ERC-1155, Next.js, Web3",
+          "gradient": "from-cyan-400 via-purple-500 to-emerald-400"
+        },
+        {
+          "id": "proj_auraos",
+          "title": "AURA_OS",
+          "url": "https://aura-nw.vercel.app",
+          "repo": "https://github.com/slatro",
+          "desc": "A decentralized, high-performance SocialFi operating system built on Monad. Fuses web-native social graph interactions with ultra-scalable DeFi mechanics, enabling secure, lightning-fast community monetization and ownership.",
+          "category": "Social",
+          "network": "Monad",
+          "tags": "Monad, SocialFi, EVM, Smart Contracts, React, Web3",
+          "gradient": "from-indigo-500 via-purple-500 to-pink-500"
         },
         {
           "id": "proj_golemseismic",
@@ -709,6 +722,7 @@
           "repo": "https://github.com/",
           "desc": "Atmospheric, lore-driven WebGL narrative game and development walkthrough built for the Seismic network. Featuring interactive puzzle rooms and immersive retro soundscapes.",
           "category": "Games",
+          "network": "Seismic",
           "tags": "Unity WebGL, Game Dev, Seismic Chain, Web Audio, Lore Matrix",
           "gradient": "from-purple-600 to-rose-600"
         },
@@ -719,6 +733,7 @@
           "repo": "https://github.com/",
           "desc": "A private cryptocurrency analytics dashboard and search engine. Offers high-priority alpha discovery alerts, token contract lookups, and private wallet activity tracking.",
           "category": "Utilities",
+          "network": "Multi",
           "tags": "Next.js, Tailwind CSS, Token Intel, Wallet Watchlist, Radar API",
           "gradient": "from-amber-400 to-rose-600"
         }
@@ -779,6 +794,7 @@
       projUrl: document.getElementById('proj-url'),
       projRepo: document.getElementById('proj-repo'),
       projCategory: document.getElementById('proj-category'),
+      projNetwork: document.getElementById('proj-network'),
       projGradient: document.getElementById('proj-gradient'),
       projTags: document.getElementById('proj-tags'),
       projDesc: document.getElementById('proj-desc'),
@@ -812,7 +828,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V12');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V13');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -828,7 +844,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V12', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V13', JSON.stringify(appState));
       updateExportArea();
     }
 
@@ -869,15 +885,35 @@
 
     function renderCategories() {
       const explicitCategories = ['All', 'DeFi / Blockchain', 'Games', 'Social', 'Utilities'];
+      
+      // Dynamically extract unique networks from the current projects list
+      const uniqueNetworks = [...new Set(appState.projects.map(p => p.network).filter(Boolean))];
+      
       let html = '';
+      
+      // Category Buttons
       explicitCategories.forEach(cat => {
         const isActive = appState.activeFilter === cat;
         if (isActive) {
           html += `<button onclick="setFilter('${cat}')" class="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold shadow-md shadow-brand-500/10 transition-all whitespace-nowrap">${cat}</button>`;
         } else {
-          html += `<button onclick="setFilter('${cat}')" class="px-4 py-2 rounded-xl bg-dark-950 hover:bg-gray-800 border border-gray-800/80 hover:border-gray-700 text-gray-400 hover:text-gray-200 text-xs font-semibold transition-all whitespace-nowrap">${cat}</button>`;
+          html += `<button onclick="setFilter('${cat}')" class="px-4 py-2 rounded-xl bg-dark-950 hover:bg-gray-800 border border-gray-850 hover:border-gray-700 text-gray-400 hover:text-gray-200 text-xs font-semibold transition-all whitespace-nowrap">${cat}</button>`;
         }
       });
+      
+      // Separator Line
+      html += `<div class="h-6 w-px bg-gray-800 mx-2 self-center flex-shrink-0"></div>`;
+      
+      // Network Buttons
+      uniqueNetworks.forEach(net => {
+        const isActive = appState.activeFilter === `net:${net}`;
+        if (isActive) {
+          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-cyan-600 text-white text-xs font-bold shadow-md shadow-cyan-500/10 transition-all whitespace-nowrap font-mono">${net}</button>`;
+        } else {
+          html += `<button onclick="setFilter('net:${net}')" class="px-4 py-2 rounded-xl bg-dark-950 hover:bg-gray-800 border border-gray-850 hover:border-gray-700 text-cyan-400 hover:text-cyan-300 text-xs font-semibold transition-all whitespace-nowrap font-mono">${net}</button>`;
+        }
+      });
+      
       dom.categoriesContainer.innerHTML = html;
     }
 
@@ -886,8 +922,17 @@
       const filter = appState.activeFilter;
       
       const filtered = appState.projects.filter(p => {
-        const matchesCategory = (filter === 'All' || p.category === filter);
-        const matchesSearch = (!search || p.title.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search) || p.tags.toLowerCase().includes(search));
+        let matchesCategory = false;
+        if (filter === 'All') {
+          matchesCategory = true;
+        } else if (filter.startsWith('net:')) {
+          const targetNet = filter.replace('net:', '');
+          matchesCategory = (p.network === targetNet);
+        } else {
+          matchesCategory = (p.category === filter);
+        }
+        
+        const matchesSearch = (!search || p.title.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search) || p.tags.toLowerCase().includes(search) || (p.network && p.network.toLowerCase().includes(search)));
         return matchesCategory && matchesSearch;
       });
 
@@ -928,7 +973,7 @@
                   <span class="text-[9px] text-gray-500 font-mono tracking-wider uppercase font-semibold">Active Build</span>
                 </div>
                 <h3 class="font-display font-extrabold text-base sm:text-lg text-white group-hover:text-brand-400 transition-colors mb-2 tracking-tight">
-                  ${p.title}
+                  ${p.title} <span class="text-xs text-cyan-400 font-mono font-medium font-normal">(${p.network || 'Multi'})</span>
                 </h3>
                 <p class="text-xs text-gray-400 leading-relaxed mb-4 min-h-[50px]">
                   ${p.desc || ''}
@@ -1050,6 +1095,7 @@
       dom.projUrl.value = proj.url || '';
       dom.projRepo.value = proj.repo || '';
       dom.projCategory.value = proj.category || 'Web Apps';
+      dom.projNetwork.value = proj.network || '';
       dom.projGradient.value = proj.gradient || 'from-brand-500 to-cyan-500';
       dom.projTags.value = proj.tags || '';
       dom.projDesc.value = proj.desc || '';
@@ -1066,6 +1112,7 @@
       dom.projUrl.value = '';
       dom.projRepo.value = '';
       dom.projCategory.value = 'Web Apps';
+      dom.projNetwork.value = '';
       dom.projGradient.value = 'from-brand-500 to-cyan-500';
       dom.projTags.value = '';
       dom.projDesc.value = '';
@@ -1197,6 +1244,7 @@
             appState.projects[idx].url = url;
             appState.projects[idx].repo = dom.projRepo.value.trim();
             appState.projects[idx].category = dom.projCategory.value;
+            appState.projects[idx].network = dom.projNetwork.value.trim();
             appState.projects[idx].gradient = dom.projGradient.value;
             appState.projects[idx].tags = dom.projTags.value;
             appState.projects[idx].desc = dom.projDesc.value.trim();
@@ -1210,6 +1258,7 @@
             url: url,
             repo: dom.projRepo.value.trim(),
             category: dom.projCategory.value,
+            network: dom.projNetwork.value.trim(),
             gradient: dom.projGradient.value,
             tags: dom.projTags.value,
             desc: dom.projDesc.value.trim()
