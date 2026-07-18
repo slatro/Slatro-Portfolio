@@ -828,7 +828,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V21');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V22');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -844,7 +844,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V21', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V22', JSON.stringify(appState));
       updateExportArea();
     }
 
@@ -886,12 +886,15 @@
     function renderCategories() {
       const explicitCategories = ['All', 'DeFi / Blockchain', 'Games', 'Social', 'Utilities'];
       
-      // Dynamically extract unique networks from the current projects list and sort 'Multichain' to the very end
+      // Dynamically extract unique networks from the current projects list and sort strictly in the requested order
       const rawNetworks = [...new Set(appState.projects.map(p => p.network).filter(Boolean))];
+      const sortOrder = ['Arc', 'Base', 'Abstract', 'Monad', 'Seismic', 'Multichain'];
       const uniqueNetworks = rawNetworks.sort((a, b) => {
-        if (a === 'Multichain') return 1;
-        if (b === 'Multichain') return -1;
-        return a.localeCompare(b);
+        let indexA = sortOrder.indexOf(a);
+        let indexB = sortOrder.indexOf(b);
+        if (indexA === -1) indexA = 999;
+        if (indexB === -1) indexB = 999;
+        return indexA - indexB;
       });
       
       let html = '';
