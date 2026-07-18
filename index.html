@@ -320,7 +320,7 @@
           </div>
 
           <!-- Category Badges Filter Strip -->
-          <div class="flex items-center overflow-x-auto gap-2 pb-2 custom-scrollbar" id="categories-container"></div>
+          <div class="flex items-center overflow-x-auto gap-2 pb-2 pr-4 custom-scrollbar" id="categories-container"></div>
         </div>
 
         <!-- Empty State -->
@@ -828,7 +828,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V14');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V15');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -844,7 +844,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V14', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V15', JSON.stringify(appState));
       updateExportArea();
     }
 
