@@ -733,7 +733,7 @@
           "repo": "https://github.com/",
           "desc": "A private cryptocurrency analytics dashboard and search engine. Offers high-priority alpha discovery alerts, token contract lookups, and private wallet activity tracking.",
           "category": "Utilities",
-          "network": "Multichain",
+          "network": "Multi",
           "tags": "Next.js, Tailwind CSS, Token Intel, Wallet Watchlist, Radar API",
           "gradient": "from-amber-400 to-rose-600"
         }
@@ -828,7 +828,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V25');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V26');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -844,7 +844,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V25', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V26', JSON.stringify(appState));
       updateExportArea();
     }
 
@@ -888,7 +888,7 @@
       
       // Dynamically extract unique networks from the current projects list and sort strictly in the requested order
       const rawNetworks = [...new Set(appState.projects.map(p => p.network).filter(Boolean))];
-      const sortOrder = ['Arc', 'Base', 'Abstract', 'Monad', 'Seismic', 'Multichain'];
+      const sortOrder = ['Arc', 'Base', 'Abstract', 'Monad', 'Seismic', 'Multi'];
       const uniqueNetworks = rawNetworks.sort((a, b) => {
         let indexA = sortOrder.indexOf(a);
         let indexB = sortOrder.indexOf(b);
@@ -914,27 +914,27 @@
       // Network Buttons Custom Styles Configuration
       const networkStyles = {
         'Arc': {
-          active: 'bg-sky-500 text-white shadow-sky-500/10 border-sky-500',
+          active: 'bg-sky-500 text-white shadow-sky-500/10 border-sky-500 [text-shadow:0_0_8px_rgba(56,189,248,0.6)]',
           inactive: 'text-sky-400 hover:text-sky-300 border-gray-850 hover:border-sky-900/60'
         },
         'Base': {
-          active: 'bg-[#0052ff] text-white shadow-[#0052ff]/10 border-[#0052ff]',
+          active: 'bg-[#0052ff] text-white shadow-[#0052ff]/10 border-[#0052ff] [text-shadow:0_0_8px_rgba(0,82,255,0.6)]',
           inactive: 'text-[#0052ff] hover:text-[#387aff] border-gray-850 hover:border-[#0052ff]/40'
         },
         'Abstract': {
-          active: 'bg-emerald-500 text-white shadow-emerald-500/10 border-emerald-500',
+          active: 'bg-emerald-500 text-white shadow-emerald-500/10 border-emerald-500 [text-shadow:0_0_8px_rgba(16,185,129,0.6)]',
           inactive: 'text-emerald-400 hover:text-emerald-300 border-gray-850 hover:border-emerald-900/60'
         },
         'Seismic': {
-          active: 'bg-[#3d2830] text-white shadow-[#3d2830]/10 border-[#3d2830]',
+          active: 'bg-[#3d2830] text-white shadow-[#3d2830]/10 border-[#3d2830] [text-shadow:0_0_8px_rgba(94,63,74,0.6)]',
           inactive: 'text-[#3d2830] hover:text-[#5e3f4a] border-gray-850 hover:border-[#3d2830]/40'
         },
         'Monad': {
-          active: 'bg-[#836efd] text-white shadow-[#836efd]/10 border-[#836efd]',
+          active: 'bg-[#836efd] text-white shadow-[#836efd]/10 border-[#836efd] [text-shadow:0_0_8px_rgba(131,110,253,0.6)]',
           inactive: 'text-[#836efd] hover:text-[#a092ff] border-gray-850 hover:border-[#836efd]/40'
         },
-        'Multichain': {
-          active: 'bg-white text-dark-950 shadow-white/10 border-white',
+        'Multi': {
+          active: 'bg-white text-dark-950 shadow-white/10 border-white [text-shadow:0_0_8px_rgba(255,255,255,0.6)]',
           inactive: 'text-gray-300 hover:text-white border-gray-850 hover:border-gray-700'
         }
       };
