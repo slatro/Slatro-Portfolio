@@ -104,19 +104,15 @@
       }
     }
 
+    /* Hide horizontal scrollbar for categories container while maintaining touch scroll */
     .custom-scrollbar::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
+      display: none;
+      width: 0;
+      height: 0;
     }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #080d1a;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #1e293b;
-      border-radius: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #334155;
+    .custom-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
     }
 
     /* Elegant Glassmorphism Card Style - Rich Frosted Glass & Inner Highlight */
@@ -828,7 +824,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V26');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V27');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -844,7 +840,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V26', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V27', JSON.stringify(appState));
       updateExportArea();
     }
 
