@@ -828,7 +828,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V23');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V24');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -844,7 +844,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V23', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V24', JSON.stringify(appState));
       updateExportArea();
     }
 
@@ -926,8 +926,8 @@
           inactive: 'text-emerald-400 hover:text-emerald-300 border-gray-850 hover:border-emerald-900/60'
         },
         'Seismic': {
-          active: 'bg-amber-700 text-white shadow-amber-700/10 border-amber-700',
-          inactive: 'text-amber-500/80 hover:text-amber-400 border-gray-850 hover:border-amber-900/60'
+          active: 'bg-[#3d2830] text-white shadow-[#3d2830]/10 border-[#3d2830]',
+          inactive: 'text-[#3d2830] hover:text-[#5e3f4a] border-gray-850 hover:border-[#3d2830]/40'
         },
         'Monad': {
           active: 'bg-[#836efd] text-white shadow-[#836efd]/10 border-[#836efd]',
