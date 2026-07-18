@@ -828,7 +828,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V22');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V23');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -844,7 +844,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V22', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V23', JSON.stringify(appState));
       updateExportArea();
     }
 
@@ -930,8 +930,8 @@
           inactive: 'text-amber-500/80 hover:text-amber-400 border-gray-850 hover:border-amber-900/60'
         },
         'Monad': {
-          active: 'bg-purple-600 text-white shadow-purple-500/10 border-purple-600',
-          inactive: 'text-purple-400 hover:text-purple-300 border-gray-850 hover:border-purple-900/60'
+          active: 'bg-[#836efd] text-white shadow-[#836efd]/10 border-[#836efd]',
+          inactive: 'text-[#836efd] hover:text-[#a092ff] border-gray-850 hover:border-[#836efd]/40'
         },
         'Multichain': {
           active: 'bg-white text-dark-950 shadow-white/10 border-white',
