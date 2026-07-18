@@ -667,7 +667,7 @@
           "repo": "https://github.com/slatro",
           "desc": "A premium cyberpunk-themed Developer ID and profile card generator. Customize stats, select developer archetypes, toggle grid layers, and generate a downloadable cyberpunk ID badge.",
           "category": "Utilities",
-          "network": "Multi",
+          "network": "Arc",
           "tags": "Cyberpunk, Developer Card, Web3, Canvas, Generator",
           "gradient": "from-cyan-400 via-blue-500 to-indigo-600"
         },
@@ -733,7 +733,7 @@
           "repo": "https://github.com/",
           "desc": "A private cryptocurrency analytics dashboard and search engine. Offers high-priority alpha discovery alerts, token contract lookups, and private wallet activity tracking.",
           "category": "Utilities",
-          "network": "Multi",
+          "network": "Multichain",
           "tags": "Next.js, Tailwind CSS, Token Intel, Wallet Watchlist, Radar API",
           "gradient": "from-amber-400 to-rose-600"
         }
@@ -828,7 +828,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V13');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V14');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -844,7 +844,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V13', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V14', JSON.stringify(appState));
       updateExportArea();
     }
 
