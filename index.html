@@ -625,8 +625,8 @@
       "projects": [
         {
           "id": "proj_arcfx",
-          "title": "Stable",
-          "url": "https://stables-fx.vercel.app/#",
+          "title": "Stablr",
+          "url": "https://www.stablr.xyz/",
           "repo": "https://github.com/",
           "desc": "A decentralized stablecoin FX AMM on the Arc Testnet. Enables capital-efficient swaps, stablecoin liquidity pools, and peer-to-peer forex trading with predictable, USDC-denominated gas fees.",
           "category": "DeFi / Blockchain",
@@ -824,7 +824,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V28');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V29');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -840,7 +840,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V28', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V29', JSON.stringify(appState));
       updateExportArea();
     }
 
