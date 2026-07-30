@@ -692,7 +692,7 @@
         {
           "id": "proj_abstractquests",
           "title": "Abstract Quests",
-          "url": "https://abtract-quest.vercel.app/",
+          "url": "https://abstract-quest.vercel.app/",
           "repo": "https://github.com/slatro",
           "desc": "An interactive questing and badge collection platform built on the Abstract chain. Users complete daily ecosystem tasks, mint ERC-1155 badges, stack XP, and climb the public leaderboard.",
           "category": "Games",
@@ -824,7 +824,7 @@
     }
 
     function loadState() {
-      const stored = localStorage.getItem('SLATRO_STATE_DATA_V29');
+      const stored = localStorage.getItem('SLATRO_STATE_DATA_V30');
       if (stored) {
         try {
           appState = JSON.parse(stored);
@@ -840,7 +840,7 @@
     }
 
     function saveState() {
-      localStorage.setItem('SLATRO_STATE_DATA_V29', JSON.stringify(appState));
+      localStorage.setItem('SLATRO_STATE_DATA_V30', JSON.stringify(appState));
       updateExportArea();
     }
 
